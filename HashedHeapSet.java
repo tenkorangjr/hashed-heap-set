@@ -186,9 +186,9 @@ public class HashedHeapSet<T> implements PriorityQueue<T> {
         return out;
     }
 
-    private void bubbleDown(int curIndex) {
+    private int bubbleDown(int curIndex) {
         if (!hasLeft(curIndex)) {
-            return;
+            return curIndex;
         }
 
         if (!hasRight(curIndex)) {
@@ -215,6 +215,7 @@ public class HashedHeapSet<T> implements PriorityQueue<T> {
                 }
             }
         }
+        return curIndex;
     }
 
     @Override
@@ -222,9 +223,9 @@ public class HashedHeapSet<T> implements PriorityQueue<T> {
 
         int itemIndex = indexMapping.get(item);
         if (itemIndex != 1 && comparator.compare(heap[itemIndex], heap[parent(itemIndex)]) < 0) {
-            bubbleUp(itemIndex);
+            indexMapping.put(item, bubbleUp(itemIndex));
         } else {
-            bubbleDown(itemIndex);
+            indexMapping.put(item, bubbleDown(itemIndex));
         }
     }
 
