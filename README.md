@@ -1,2 +1,2 @@
-# hashed-heap-set
+# Hashed Heap Set
 A hashed heap set
